@@ -44,6 +44,12 @@ public class MarkdownDisplayPortlet extends MVCPortlet {
 		String markdownURL = preferences.getValue("markdownURL", null);
 		int timeToLive = 60 * GetterUtil.getInteger(preferences.getValue(
 				"timeToLive", "1"));
+		boolean autolinks = GetterUtil.getBoolean(preferences.getValue(
+				"autolinks", "false"));
+		boolean fencedBlockCodes = GetterUtil.getBoolean(preferences.getValue(
+				"fencedBlockCodes", "false"));
+		boolean tables = GetterUtil.getBoolean(preferences.getValue("tables",
+				"false"));
 
 		if (Validator.isNotNull(markdownURL)) {
 			PortalCache<Serializable, Object> portalCache = SingleVMPoolUtil
@@ -52,8 +58,16 @@ public class MarkdownDisplayPortlet extends MVCPortlet {
 			String content = (String) portalCache.get(markdownURL);
 
 			if (content == null) {
-				int options = Extensions.FENCED_CODE_BLOCKS
-						| Extensions.AUTOLINKS | Extensions.TABLES;
+				int options = Extensions.NONE;
+				if (autolinks) {
+					options = options | Extensions.AUTOLINKS;
+				}
+				if (fencedBlockCodes) {
+					options = options | Extensions.FENCED_CODE_BLOCKS;
+				}
+				if (tables) {
+					options = options | Extensions.TABLES;
+				}
 
 				PegDownProcessor processor = new PegDownProcessor(options);
 

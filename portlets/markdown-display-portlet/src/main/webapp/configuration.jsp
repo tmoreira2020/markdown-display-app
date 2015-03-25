@@ -38,6 +38,15 @@ Fill in the url for your Markdown file. For instance <strong>https://raw.githubu
 			</c:forTokens>
 		</aui:select>
 
+		<aui:field-wrapper label="extensions">
+			<c:set var="preferences" value="${portletPreferencesValues['autolinks']}" />
+			<aui:input name="preferences--autolinks--" type="checkbox" value="${preferences[0]}" />
+			<c:set var="preferences" value="${portletPreferencesValues['fencedBlockCodes']}" />
+			<aui:input name="preferences--fencedBlockCodes--" type="checkbox" value="${preferences[0]}" />
+			<c:set var="preferences" value="${portletPreferencesValues['tables']}" />
+			<aui:input name="preferences--tables--" type="checkbox" value="${preferences[0]}" />
+		</aui:field-wrapper>
+
 		<aui:button-row>
 			<aui:button type="submit" />
 		</aui:button-row>
