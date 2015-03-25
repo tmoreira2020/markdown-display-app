@@ -22,7 +22,7 @@
 	<portlet>
 		<portlet-name>markdown-display-portlet</portlet-name>
 		<icon>/icon.png</icon>
-		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<configuration-action-class>br.com.thiagomoreira.liferay.plugins.ConfigurationAction</configuration-action-class>
 		<instanceable>true</instanceable>
 		<css-class-wrapper>markdown-display-portlet</css-class-wrapper>
 	</portlet>
