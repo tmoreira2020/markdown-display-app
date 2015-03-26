@@ -27,7 +27,7 @@
 
 	<groupId>br.com.thiagomoreira.liferay.plugins.markdown-display-app</groupId>
 	<artifactId>markdown-display-app-parent</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Markdown Display App Parent</name>
@@ -44,7 +44,7 @@
 		<connection>scm:git:git@github.com:tmoreira2020/markdown-display-app.git</connection>
 		<developerConnection>scm:git:git@github.com:tmoreira2020/markdown-display-app.git</developerConnection>
 		<url>https://github.com/tmoreira2020/markdown-display-app</url>
-		<tag>markdown-display-app-1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
