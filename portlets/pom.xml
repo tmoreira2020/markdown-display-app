@@ -33,47 +33,4 @@
 	<modules>
 		<module>markdown-display-portlet</module>
 	</modules>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.liferay.portal</groupId>
-			<artifactId>util-bridges</artifactId>
-			<version>${liferay.dependencies.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.liferay.portal</groupId>
-			<artifactId>util-java</artifactId>
-			<version>${liferay.dependencies.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.liferay.portal</groupId>
-			<artifactId>util-taglib</artifactId>
-			<version>${liferay.dependencies.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>jstl-impl</artifactId>
-			<version>1.2</version>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.liferay.maven.plugins</groupId>
-				<artifactId>liferay-maven-plugin</artifactId>
-				<configuration>
-					<pluginType>portlet</pluginType>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>build-css</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
