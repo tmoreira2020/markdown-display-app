@@ -33,9 +33,10 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.pegdown</groupId>
-			<artifactId>pegdown</artifactId>
-			<version>1.5.0</version>
+			<groupId>com.vladsch.flexmark</groupId>
+			<artifactId>flexmark-all</artifactId>
+			<version>0.32.24</version>
+			<classifier>lib</classifier>
 		</dependency>
 	</dependencies>
 </project>
