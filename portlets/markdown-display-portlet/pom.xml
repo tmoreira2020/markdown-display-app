@@ -66,7 +66,7 @@
 				<version>3.3.0</version>
 				<configuration>
 					<bnd><![CDATA[
-							Symbolic-Name: br.com.thiagomoreira.liferay.plugins.markdown-display-portlet
+							Bundle-SymbolicName: br.com.thiagomoreira.liferay.plugins.markdown-display-portlet
 							Bundle-ClassPath:\
 							  .,\
 							  lib/autolink.jar,\
@@ -81,6 +81,7 @@
 							  lib/openhtmltopdf-pdfbox.jar=openhtmltopdf-pdfbox-0.0.1-RC9.jar,\
 							  lib/openhtmltopdf-rtl-support.jar=openhtmltopdf-rtl-support-0.0.1-RC9.jar
 							-jsp: *.jsp,*.jspf
+							-contract: JavaPortlet,JavaServlet
 							-plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
 							-plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
 							-plugin.sass: com.liferay.ant.bnd.sass.SassAnalyzerPlugin

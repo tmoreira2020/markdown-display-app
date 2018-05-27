@@ -18,18 +18,21 @@ package br.com.thiagomoreira.liferay.plugins;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.osgi.service.component.annotations.Component;
+
 import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.cache.SingleVMPoolUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.vladsch.flexmark.ast.Node;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
@@ -37,6 +40,18 @@ import com.vladsch.flexmark.profiles.pegdown.Extensions;
 import com.vladsch.flexmark.profiles.pegdown.PegdownOptionsAdapter;
 import com.vladsch.flexmark.util.options.DataHolder;
 
+@Component(
+	immediate = true,
+	property = {
+		"com.liferay.portlet.display-category=category.thiagomoreira",
+		"com.liferay.portlet.instanceable=true",
+		"com.liferay.portlet.configuration-action-class=br.com.thiagomoreira.liferay.plugins.MarkdownDisplayConfigurationAction",
+		"javax.portlet.display-name=Markdown Display",
+		"javax.portlet.init-param.template-path=/",
+		"javax.portlet.init-param.view-template=/view.jsp",
+		"javax.portlet.resource-bundle=content.Language",
+		"javax.portlet.security-role-ref=power-user,user"},
+	service = Portlet.class)
 public class MarkdownDisplayPortlet extends MVCPortlet {
 
 	@Override
