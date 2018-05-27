@@ -71,7 +71,7 @@ public class MarkdownDisplayPortlet extends MVCPortlet {
 
 		if (Validator.isNotNull(markdownURL)) {
 			PortalCache<Serializable, Object> portalCache = SingleVMPoolUtil
-					.getCache(MarkdownDisplayPortlet.class.getName());
+					.getPortalCache(MarkdownDisplayPortlet.class.getName());
 
 			String content = (String) portalCache.get(markdownURL);
 
