@@ -89,10 +89,11 @@ public class MarkdownDisplayPortlet extends MVCPortlet {
 					options = options | Extensions.TABLES;
 				}
 
-
-				DataHolder dataHolder = PegdownOptionsAdapter.flexmarkOptions(options);
+				DataHolder dataHolder = PegdownOptionsAdapter
+						.flexmarkOptions(options);
 				Parser parser = Parser.builder(dataHolder).build();
-				HtmlRenderer renderer = HtmlRenderer.builder(dataHolder).build();
+				HtmlRenderer renderer = HtmlRenderer.builder(dataHolder)
+						.build();
 
 				Node document = parser.parse(markdownSource);
 				content = renderer.render(document);
