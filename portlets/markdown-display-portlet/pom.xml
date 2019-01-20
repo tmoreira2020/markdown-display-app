@@ -65,8 +65,7 @@
 				<artifactId>bnd-maven-plugin</artifactId>
 				<version>3.3.0</version>
 				<configuration>
-					<bnd><![CDATA[
-							Bundle-SymbolicName: br.com.thiagomoreira.liferay.plugins.markdown-display-portlet
+					<bnd><![CDATA[Bundle-SymbolicName: br.com.thiagomoreira.liferay.plugins.markdown-display-portlet
 							Bundle-ClassPath:\
 							  .,\
 							  lib/autolink.jar,\

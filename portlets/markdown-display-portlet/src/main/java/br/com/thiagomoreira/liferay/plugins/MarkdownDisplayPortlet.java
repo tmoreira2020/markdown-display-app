@@ -40,9 +40,7 @@ import com.vladsch.flexmark.profiles.pegdown.Extensions;
 import com.vladsch.flexmark.profiles.pegdown.PegdownOptionsAdapter;
 import com.vladsch.flexmark.util.options.DataHolder;
 
-@Component(
-	immediate = true,
-	property = {
+@Component(immediate = true, property = {
 		"com.liferay.portlet.display-category=category.thiagomoreira",
 		"com.liferay.portlet.instanceable=true",
 		"com.liferay.portlet.configuration-action-class=br.com.thiagomoreira.liferay.plugins.MarkdownDisplayConfigurationAction",
@@ -50,8 +48,7 @@ import com.vladsch.flexmark.util.options.DataHolder;
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.resource-bundle=content.Language",
-		"javax.portlet.security-role-ref=power-user,user"},
-	service = Portlet.class)
+		"javax.portlet.security-role-ref=power-user,user"}, service = Portlet.class)
 public class MarkdownDisplayPortlet extends MVCPortlet {
 
 	@Override

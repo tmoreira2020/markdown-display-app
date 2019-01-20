@@ -15,7 +15,6 @@
     limitations under the License.
 
 --%>
-
 <%@ include file="/init.jsp" %>
 
 <c:choose>

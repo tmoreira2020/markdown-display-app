@@ -29,13 +29,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.ConfigurationAction;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 
-@Component(
-	configurationPolicy = ConfigurationPolicy.OPTIONAL,
-	immediate = true,
-	property = {
-		"javax.portlet.name=br_com_thiagomoreira_liferay_plugins_MarkdownDisplayPortlet"
-	},
-	service = ConfigurationAction.class)
+@Component(configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true, property = {"javax.portlet.name=br_com_thiagomoreira_liferay_plugins_MarkdownDisplayPortlet"}, service = ConfigurationAction.class)
 public class MarkdownDisplayConfigurationAction
 		extends
 			DefaultConfigurationAction {
