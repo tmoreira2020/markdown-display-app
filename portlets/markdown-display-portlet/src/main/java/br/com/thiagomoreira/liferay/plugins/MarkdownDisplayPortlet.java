@@ -1,11 +1,11 @@
 /**
- * Copyright (C) 2015 Thiago Moreira (tmoreira2020@gmail.com)
+ * Copyright © 2015 Thiago Moreira (tmoreira2020@gmail.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,22 +18,37 @@ package br.com.thiagomoreira.liferay.plugins;
 import java.io.IOException;
 import java.io.Serializable;
 
+import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.pegdown.Extensions;
-import org.pegdown.PegDownProcessor;
+import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.cache.PortalCache;
 import com.liferay.portal.kernel.cache.SingleVMPoolUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.vladsch.flexmark.ast.Node;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.profiles.pegdown.Extensions;
+import com.vladsch.flexmark.profiles.pegdown.PegdownOptionsAdapter;
+import com.vladsch.flexmark.util.options.DataHolder;
 
+@Component(immediate = true, property = {
+		"com.liferay.portlet.display-category=category.thiagomoreira",
+		"com.liferay.portlet.instanceable=true",
+		"com.liferay.portlet.configuration-action-class=br.com.thiagomoreira.liferay.plugins.MarkdownDisplayConfigurationAction",
+		"javax.portlet.display-name=Markdown Display",
+		"javax.portlet.init-param.template-path=/",
+		"javax.portlet.init-param.view-template=/view.jsp",
+		"javax.portlet.resource-bundle=content.Language",
+		"javax.portlet.security-role-ref=power-user,user"}, service = Portlet.class)
 public class MarkdownDisplayPortlet extends MVCPortlet {
 
 	@Override
@@ -53,11 +68,13 @@ public class MarkdownDisplayPortlet extends MVCPortlet {
 
 		if (Validator.isNotNull(markdownURL)) {
 			PortalCache<Serializable, Object> portalCache = SingleVMPoolUtil
-					.getCache(MarkdownDisplayPortlet.class.getName());
+					.getPortalCache(MarkdownDisplayPortlet.class.getName());
 
 			String content = (String) portalCache.get(markdownURL);
 
 			if (content == null) {
+				String markdownSource = HttpUtil.URLtoString(markdownURL);
+
 				int options = Extensions.NONE;
 				if (autolinks) {
 					options = options | Extensions.AUTOLINKS;
@@ -69,10 +86,14 @@ public class MarkdownDisplayPortlet extends MVCPortlet {
 					options = options | Extensions.TABLES;
 				}
 
-				PegDownProcessor processor = new PegDownProcessor(options);
+				DataHolder dataHolder = PegdownOptionsAdapter
+						.flexmarkOptions(options);
+				Parser parser = Parser.builder(dataHolder).build();
+				HtmlRenderer renderer = HtmlRenderer.builder(dataHolder)
+						.build();
 
-				String markdownSource = HttpUtil.URLtoString(markdownURL);
-				content = processor.markdownToHtml(markdownSource);
+				Node document = parser.parse(markdownSource);
+				content = renderer.render(document);
 
 				portalCache.put(markdownURL, content, timeToLive);
 			}
