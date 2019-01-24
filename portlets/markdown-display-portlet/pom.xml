@@ -57,6 +57,12 @@
 			<version>1.0.0-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.portal.upgrade.api</artifactId>
+			<version>2.0.3</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -66,6 +72,7 @@
 				<version>3.3.0</version>
 				<configuration>
 					<bnd><![CDATA[Bundle-SymbolicName: br.com.thiagomoreira.liferay.plugins.markdown-display-portlet
+							Liferay-Require-SchemaVersion: 1.0
 							Bundle-ClassPath:\
 							  .,\
 							  lib/autolink.jar,\
